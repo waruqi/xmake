@@ -1,24 +1,50 @@
 name: Bug Report
-description: Report an Electron bug
-title: "[Bug]: "
-labels: "bug :beetle:"
+description: Create a report to help us improve
+labels: 'bug :beetle:'
 body:
-- type: checkboxes
-  attributes:
-    label: Preflight Checklist
-    description: Please ensure you've completed all of the following.
-    options:
-      - label: I have read the [Contributing Guidelines](https://github.com/electron/electron/blob/main/CONTRIBUTING.md) for this project.
-        required: true
-      - label: I agree to follow the [Code of Conduct](https://github.com/electron/electron/blob/main/CODE_OF_CONDUCT.md) that this project adheres to.
-        required: true
-      - label: I have searched the [issue tracker](https://www.github.com/electron/electron/issues) for a bug report that matches the one I want to file, without success.
-        required: true
+
 - type: input
   attributes:
-    label: Electron Version
-    description: What version of Electron are you using?
-    placeholder: 12.0.0
+    label: Xmake Version
+    description: What version of Xmake are you using?
+    placeholder: 0.0.0
+  validations:
+    required: true
+
+- type: dropdown
+  attributes:
+    label: What operating system are you using?
+    options:
+      - Windows
+      - macOS
+      - Ubuntu
+      - Other Linux
+      - Other (specify below)
+  validations:
+    required: true
+
+- type: input
+  attributes:
+    label: Operating System Version
+    description: What operating system version are you using? On Windows, click Start button > Settings > System > About. On macOS, click the Apple Menu > About This Mac. On Linux, use lsb_release or uname -a.
+    placeholder: "e.g. Windows 10 version 1909, macOS Catalina 10.15.7, or Ubuntu 20.04"
+  validations:
+    required: true
+- type: dropdown
+  attributes:
+    label: What arch are you using?
+    options:
+      - x64
+      - ia32
+      - arm64 (including Apple Silicon)
+      - Other (specify below)
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Describe Bug
+    description: A clear and concise description of what the bug is.
   validations:
     required: true
 
@@ -28,17 +54,17 @@ body:
     description: A clear and concise description of what you expected to happen.
   validations:
     required: true
+
 - type: textarea
   attributes:
-    label: Actual Behavior
-    description: A clear description of what actually happens.
-  validations:
-    required: true
-- type: input
+    label: Project Configuration
+    description: If possible, please provide your configuration in xmake.lua if possible. Or provide a complete minimal reproducible example project and upload it as an attachment.
+
+- type: textarea
   attributes:
-    label: Testcase Gist URL
-    description: If you can reproduce the issue in a standalone test case, please use [Electron Fiddle](https://github.com/electron/fiddle) to create one and to publish it as a [GitHub gist](https://gist.github.com) and put the gist URL here. This is **the best way** to ensure this issue is triaged quickly.
-    placeholder: https://gist.github.com/...
+    label: Error Output
+    description: If applicable, please add verbose the errors output to help us analyze your problem. If it is a xmake related compilation problem, please add the `-v -D` parameter and give the detailed compilation output information.
+
 - type: textarea
   attributes:
     label: Additional Information
