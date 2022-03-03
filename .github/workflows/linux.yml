@@ -8,9 +8,10 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    concurrency:
+        group: ${{ github.ref }}-${{ github.base_ref }}-${{ github.head_ref }}-Linux
+        cancel-in-progress: true
     steps:
       - uses: actions/checkout@v2
         with:
@@ -20,31 +21,32 @@ jobs:
       - uses: xmake-io/github-action-setup-xmake@v1
         with:
           xmake-version: local#../xmake-source
-      - uses: mihails-strasuns/setup-dlang@v0.5.0
+      - uses: dlang-community/setup-dlang@v1
         with:
           compiler: dmd-latest
-      - uses: olegtarasov/get-tag@v2
+      - uses: little-core-labs/get-git-tag@v3.0.2
         id: tagName
 
-        # tests
-      - name: tests
+      - name: Prepare
+        run: |
+          echo ${{ github.ref }}-${{ github.base_ref }}-${{ github.head_ref }}
+          sudo apt install -y ruby ruby-dev rubygems build-essential llvm
+
+      - name: Tests
         run: |
           xmake lua -v -D tests/run.lua
+          xrepo --version
 
-        # build artifacts
-      - name: artifact
+      - name: Artifact
         run: |
-          sudo apt install -y ruby ruby-dev rubygems build-essential
           sudo gem install --no-document fpm
-          scripts/makepkg deb 
-        # upload artifacts
+          scripts/makepkg deb
       - uses: actions/upload-artifact@v2
         with:
           name: xmake-latest.amd64.deb
           path: artifacts/xmake.deb
 
-        # publish release
-      - name: publish
+      - name: Publish
         if: github.event.action == 'published'
         uses: actions/upload-release-asset@v1.0.1
         env:
@@ -55,7 +57,7 @@ jobs:
           asset_name: xmake-${{ steps.tagName.outputs.tag }}.amd64.deb
           asset_content_type: application/zip
 
-      - name: publish
+      - name: Publish
         if: github.event.action == 'published'
         env:
           PPA_GPG_PRIKEY_2C0C68C9: ${{ secrets.PPA_GPG_PRIKEY_2C0C68C9 }}
@@ -64,11 +66,11 @@ jobs:
           sudo apt install -y dh-make rng-tools devscripts lintian
           echo "$PPA_GPG_PRIKEY_2C0C68C9" > ppa_gpg.key
           gpg --import ppa_gpg.key
-          scripts/makeppa groovy  
-          scripts/makeppa focal 
-          scripts/makeppa bionic 
-          scripts/makeppa xenial  
-          scripts/makeppa trusty  
-          scripts/makeppa precise  
+          scripts/makeppa groovy
+          scripts/makeppa focal
+          scripts/makeppa bionic
+          scripts/makeppa xenial
+          scripts/makeppa trusty
+          scripts/makeppa precise
 
 
