@@ -5,7 +5,7 @@ body:
 
 - type: input
   attributes:
-    label: Xmake 版本
+    label: "Xmake 版本"
     description: 你正在使用的 Xmake 版本是什么？
     placeholder: 0.0.0
   validations:
