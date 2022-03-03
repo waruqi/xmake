@@ -12,6 +12,6 @@ body:
     required: true
 - type: input
   attributes:
-    label: 操作系统版本和架构
+    label: "操作系统版本和架构"
   validations:
     required: true
