@@ -1,5 +1,5 @@
-name: 报告问题
-description: 报告问题以帮助我们改进
+name: Bug Report
+description: Create a report to help us improve
 labels: 'bug :beetle:'
 body:
 
