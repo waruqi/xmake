@@ -53,6 +53,10 @@ body:
   id: note
   attributes:
     value: |
-      ### 技术支持
-      非常感谢您能在这里反馈问题，由于我们的时间精力有限，不能保证及时回复和解决问题。
-      当然，您也可以考虑赞助我们，以获取更高优先级的问题处理和解决，更多详情见：[技术支持](https://github.com/xmake-io/xmake/issues/2043)
+      ## 技术支持
+
+      你也可以考虑通过 [Github 的赞助计划](https://github.com/sponsors/waruqi) 赞助我们来获取额外的技术支持服务，然后你就能获取 [xmake-io/technical-support](https://github.com/xmake-io/technical-support) 仓库的访问权限，获取更多技术咨询相关的信息。
+
+      - [x] 更高优先级的 Issues 问题处理
+      - [x] 一对一技术咨询服务
+      - [x] Review xmake.lua 并提供改进建议
