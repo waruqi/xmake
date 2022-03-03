@@ -42,11 +42,16 @@ body:
   attributes:
     label: 工程配置
     description: 如果可以，请尽可能提供你工程的 xmake.lua 配置内容。或者提供最小可复现的完整工程例子，作为附件上传。
-    placeholder: "无"
 
 - type: textarea
   id: additional
   attributes:
     label: 附加信息和错误日志
     description: 如果是 Xmake 相关问题，请添加 `-vD` 命令参数，并且提供完整详细的输出和错误信息。如果你的问题还需要进一步描述，请在这里提供更多信息。
-    placeholder: "无"
+
+- type: markdown
+  id: note
+  attributes:
+    value: |
+      非常感谢您能在这里反馈问题，由于我们的时间精力有限，不能保证及时回复和解决问题。当然，您也可以考虑赞助我们，以获取更高优先级的问题处理和解决。
+      更多详情见：[#2043](https://github.com/xmake-io/xmake/issues/2043)
