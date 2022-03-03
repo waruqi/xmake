@@ -52,7 +52,7 @@ body:
 - type: markdown
   id: note
   attributes:
-    label: 技术支持
     value: |
+      ### 技术支持
       非常感谢您能在这里反馈问题，由于我们的时间精力有限，不能保证及时回复和解决问题。
       当然，您也可以考虑赞助我们，以获取更高优先级的问题处理和解决，更多详情见：[技术支持](https://github.com/xmake-io/xmake/issues/2043)
