@@ -17,16 +17,3 @@ body:
     placeholder: "例如：Windows 10 version 1909, macOS Catalina 10.15.7, or Ubuntu 20.04"
   validations:
     required: true
-- type: textarea
-  attributes:
-    label: 描述问题
-    description: 请尽量清晰精准地描述你碰到的问题。
-  validations:
-    required: true
-
-- type: textarea
-  attributes:
-    label: 期待的结果
-    description: 请尽量清晰精准地描述你所期待的结果。
-  validations:
-    required: true
