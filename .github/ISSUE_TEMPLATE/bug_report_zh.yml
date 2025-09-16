@@ -25,7 +25,8 @@ body:
   id: problem
   attributes:
     label: 描述问题
-    description: 请尽量清晰精准地描述你碰到的问题。
+    description: 请尽量清晰精准地描述你碰到的问题。请不要使用占位符文本如 "xxxx"。
+    placeholder: 请详细描述您遇到的具体问题...
   validations:
     required: true
 
@@ -33,7 +34,8 @@ body:
   id: expected
   attributes:
     label: 期待的结果
-    description: 请尽量清晰精准地描述你所期待的结果。
+    description: 请尽量清晰精准地描述你所期待的结果。请不要使用占位符文本如 "xxxx"。
+    placeholder: 请描述您期望的具体结果...
   validations:
     required: true
 
@@ -47,7 +49,8 @@ body:
   id: additional
   attributes:
     label: 附加信息和错误日志
-    description: 如果是 Xmake 相关问题，请添加 `-vD` 命令参数，并且提供完整详细的输出和错误信息。如果你的问题还需要进一步描述，请在这里提供更多信息。
+    description: 如果是 Xmake 相关问题，请添加 `-vD` 命令参数，并且提供完整详细的输出和错误信息。如果你的问题还需要进一步描述，请在这里提供更多信息。请不要使用占位符文本如 "xxxx"。
+    placeholder: 请提供详细的错误日志和附加信息...
 
 - type: markdown
   id: note
