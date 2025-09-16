@@ -43,21 +43,11 @@ rule("platform.windows.subsystem")
             elseif target:has_tool("ld", "link", "lld-link") then
                 target:add("ldflags", "/SUBSYSTEM:" .. subsystem:upper(), { force = true })
             elseif target:has_tool("ld", "gcc", "gxx") then
-                -- For MinGW, use --subsystem instead of -m emulation mode
-                if target:plat() == "mingw" then
-                    target:add("ldflags", "-Wl,--subsystem," .. subsystem, { force = true })
-                else
-                    target:add("ldflags", "-Wl,-m" .. subsystem, { force = true })
-                end
+                target:add("ldflags", "-m" .. subsystem, { force = true })
             elseif target:has_tool("ld", "lld") then
                 target:add("ldflags", "-subsystem:" .. subsystem, { force = true })
             elseif target:has_tool("ld", "ld") then
-                -- For MinGW ld, use --subsystem instead of -m emulation mode
-                if target:plat() == "mingw" then
-                    target:add("ldflags", "--subsystem," .. subsystem, { force = true })
-                else
-                    target:add("ldflags", "-m" .. subsystem, { force = true })
-                end
+                target:add("ldflags", "-m" .. subsystem, { force = true })
             end
         end
     end)
