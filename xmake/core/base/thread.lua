@@ -388,6 +388,7 @@ end
 -- @return          ok, errors
 --
 function _event:post()
+    print("event post", self, debug.traceback())
     local ok, errors = self:_ensure_opened()
     if not ok then
         return false, errors
@@ -401,6 +402,7 @@ end
 
 -- wait event
 function _event:wait(timeout)
+    print("event wait", self)
     local ok, errors = self:_ensure_opened()
     if not ok then
         return false, errors

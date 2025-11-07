@@ -41,7 +41,9 @@ tb_int_t xm_thread_event_wait(lua_State* lua)
     tb_assert_and_check_return_val(thread_event && thread_event->handle, 0);
 
     tb_long_t timeout = (tb_long_t)luaL_checknumber(lua, 2);
-    lua_pushinteger(lua, tb_event_wait(thread_event->handle, timeout));
+    tb_long_t wait = tb_event_wait(thread_event->handle, timeout);
+        tb_trace_i("tb_event_wait: %p, %ld %ld", thread_event->handle, wait, timeout);
+    lua_pushinteger(lua, wait);
     return 1;
 }
 

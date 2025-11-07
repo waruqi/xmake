@@ -43,8 +43,10 @@ local sharedata_pool = {}
 -- get event from pool or create new one
 function async_task._get_event()
     local event = table.remove(event_pool)
+    print("get event", event)
     if not event then
         event = thread.event()
+        print("new", event)
     end
     return event
 end
@@ -231,6 +233,7 @@ end
 function async_task._post_task(cmd, is_detach, return_data)
     local cmd_event, cmd_result
 
+    print("post task")
     -- create event and result for non-detach mode
     if not is_detach then
         cmd_event = async_task._get_event()
@@ -255,10 +258,13 @@ function async_task._post_task(cmd, is_detach, return_data)
     else
         -- wait for completion
         task_event:post()
+        print("wait event")
         cmd_event:wait(-1)
+        print("wait ok")
         local result = cmd_result:get()
         async_task._put_event(cmd_event)
         async_task._put_sharedata(cmd_result)
+        print("return", result, return_data)
         if result and result.ok then
             if return_data then
                 return result.data, #result.data

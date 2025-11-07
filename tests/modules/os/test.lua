@@ -155,6 +155,7 @@ function test_async(t)
     io.writefile(path.join(tmpdir, "foo.txt"), "foo")
     io.writefile(path.join(tmpdir, "bar.txt"), "bar")
     local files = os.files(path.join(tmpdir, "*.txt"), {async = true})
+    print("files", files)
     t:require(files and #files == 2)
 
     os.cp(tmpdir, tmpdir2, {async = true, detach = true})

@@ -45,6 +45,7 @@ tb_int_t xm_thread_event_exit(lua_State* lua)
         if (thread_event->handle)
         {
             tb_event_exit(thread_event->handle);
+            tb_trace_i("tb_event_exit %p", thread_event->handle);
             thread_event->handle = tb_null;
         }
         tb_free(thread_event);

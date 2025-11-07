@@ -46,6 +46,7 @@ tb_int_t xm_thread_event_init(lua_State* lua)
 
         thread_event->refn = 1;
         thread_event->handle = tb_event_init();
+        tb_trace_i("tb_event_init: %p", thread_event->handle);
         tb_assert_and_check_break(thread_event->handle);
 
         xm_lua_pushpointer(lua, (tb_pointer_t)thread_event);

@@ -6,7 +6,7 @@ local test_assert = { print_error = import("print_error", { anonymous = true }).
 
 function test_assert:require(value)
     if not value then
-        self:print_error(vformat("require ${green}true${reset} but got ${red}%s${reset}", value), self.filename)
+        self:print_error(vformat("require ${green}true${reset} but got ${red}%s${reset}", tostring(value)), self.filename)
     end
 end
 

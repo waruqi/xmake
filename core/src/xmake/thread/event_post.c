@@ -41,6 +41,7 @@ tb_int_t xm_thread_event_post(lua_State* lua)
     tb_assert_and_check_return_val(thread_event && thread_event->handle, 0);
 
     lua_pushboolean(lua, tb_event_post(thread_event->handle));
+        tb_trace_i("tb_event_post: %p ok", thread_event->handle);
     return 1;
 }
 
