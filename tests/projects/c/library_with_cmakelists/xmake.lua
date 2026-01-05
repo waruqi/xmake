@@ -4,6 +4,10 @@ package("foo")
     add_deps("cmake")
     set_sourcedir(path.join(os.scriptdir(), "foo"))
     set_policy("package.install_always", true)
+    on_load(function (package)
+        -- xmake v3.x will enable this ninja policy by default
+        import("core.project.project")
+    end)
     on_install(function (package)
         local configs = {}
         table.insert(configs, "-DCMAKE_BUILD_TYPE=" .. (package:debug() and "Debug" or "Release"))
