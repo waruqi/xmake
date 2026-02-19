@@ -747,6 +747,7 @@ end
 
 -- make the linkdir flag
 function nf_linkdir(self, dir)
+    print("nf_linkdir", dir, path.translate(dir))
     return {"-L" .. path.translate(dir)}
 end
 
@@ -1030,6 +1031,8 @@ function compile(self, sourcefile, objectfile, dependinfo, flags, opt)
             if colors_diagnostics then
                 compflags = table.join(compflags, colors_diagnostics)
             end
+
+            print("link curdir", os.curdir())
 
             -- do compile
             return _compile(self, sourcefile, objectfile, compflags, opt)

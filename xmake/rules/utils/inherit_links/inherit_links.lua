@@ -84,7 +84,9 @@ function main(target)
         if implibfile then
             _add_export_value(target, "linkdirs", path.directory(implibfile))
         else
+            print("_add_export_value", targetfile, path.directory(targetfile))
             _add_export_value(target, "linkdirs", path.directory(targetfile))
+            print(target:name(), target:get("linkdirs"))
         end
 
         if target:rule("go") then

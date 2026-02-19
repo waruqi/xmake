@@ -76,4 +76,6 @@ jobs:
             export PATH=`pwd`/dist/bin:$PATH
             xrepo --version
             xmake l os.meminfo
-            xmake lua -v -D tests/run.lua
+            xmake l os.tmpdir
+            cd /tmp/
+            xmake l os.curdir

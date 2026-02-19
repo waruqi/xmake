@@ -229,7 +229,12 @@ function path.absolute(p, rootdir)
     if rootdir then
         rootdir = tostring(rootdir)
     end
-    return path._absolute(tostring(p), rootdir)
+    local p = path._absolute(tostring(p), rootdir)
+    if p == "/home/runner/work/xmake/xmake/tests/plugins/create/build/haiku/x86_64/release" then
+        print("rootdir", rootdir)
+        os.raise()
+    end
+    return p
 end
 
 -- get relative path

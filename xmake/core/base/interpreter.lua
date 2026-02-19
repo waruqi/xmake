@@ -773,6 +773,11 @@ function interpreter:load(file, opt)
     -- we need to normalize path for rootdir, @see https://github.com/xmake-io/xmake/issues/6995
     file = path.normalize(path.absolute(file))
 
+    if file:startswith("/tmp/.xmake0/") and file:endswith("/test_create/test_cpp2") then
+        print("load", file)
+        print("curdir", os.curdir())
+        os.raise()
+    end
     -- init the current file
     self._PRIVATE._CURFILE = file
     self._PRIVATE._SCRIPT_FILES = {file}
