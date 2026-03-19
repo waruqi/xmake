@@ -65,11 +65,19 @@ option_find_curses() {
     if is_plat "mingw"; then
         ncurses="ncursesw"
     fi
-    local ncurses_ldflags=""
-    ncurses_ldflags=$(pkg-config --libs ${ncurses} 2>/dev/null)
+    # on macOS, homebrew ncurses is keg-only, prioritize its pkgconfig path
+    local pkgconf="pkg-config"
+    if is_host "macosx"; then
+        local brew_prefix=$(brew --prefix ncurses 2>/dev/null)
+        if test_nz "${brew_prefix}" && test -d "${brew_prefix}/lib/pkgconfig"; then
+            pkgconf="PKG_CONFIG_PATH=${brew_prefix}/lib/pkgconfig pkg-config"
+        fi
+    fi
+    local ncurses_cflags=$(eval ${pkgconf} --cflags ${ncurses} 2>/dev/null)
+    local ncurses_ldflags=$(eval ${pkgconf} --libs ${ncurses} 2>/dev/null)
     option "curses"
         if test_nz "${ncurses_ldflags}"; then
-            add_cflags `pkg-config --cflags ${ncurses} 2>/dev/null`
+            add_cflags "${ncurses_cflags}"
             add_ldflags "${ncurses_ldflags}"
         else
             add_links "curses"

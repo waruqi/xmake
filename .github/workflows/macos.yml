@@ -30,7 +30,7 @@ jobs:
         run: |
           pkg-config --libs ncurses
           pkg-config --cflags ncurses
-          ./configure
+          ./configure --verbose --diagnosis
           make -j8 VERBOSE=1
 
       - name: Prepare local xmake
