@@ -3757,7 +3757,7 @@ _check_cxsnippets() {
         if is_plat "macosx"; then
             _os_iorunv "xcrun" "-sdk" "macosx" "--show-sdk-path"; local _sdkdir="${_ret}"
             if test_nz "${_sdkdir}"; then
-                compflags="-isysroot \"${_sdkdir}\" ${compflags}"
+                compflags="-isysroot ${_sdkdir} ${compflags}"
                 path_basename "${_sdkdir}"; local _basename="${_ret}"
                 if test_nz "${_basename}" && string_startswith "${_basename}" "MacOSX"; then
                     string_replace "${_basename}" "MacOSX" ""; local _target_minver="${_ret}"
