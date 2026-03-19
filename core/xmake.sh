@@ -65,22 +65,11 @@ option_find_curses() {
     if is_plat "mingw"; then
         ncurses="ncursesw"
     fi
-    local ncurses_cflags=""
     local ncurses_ldflags=""
-    if is_host "macosx"; then
-        # use system SDK curses to avoid header/library mismatch with homebrew ncurses
-        local sdkpath=$(xcrun --show-sdk-path 2>/dev/null)
-        if test_nz "${sdkpath}"; then
-            ncurses_cflags="-isystem ${sdkpath}/usr/include"
-        fi
-        ncurses_ldflags="-lcurses"
-    else
-        ncurses_cflags=$(pkg-config --cflags ${ncurses} 2>/dev/null)
-        ncurses_ldflags=$(pkg-config --libs ${ncurses} 2>/dev/null)
-    fi
+    ncurses_ldflags=$(pkg-config --libs ${ncurses} 2>/dev/null)
     option "curses"
         if test_nz "${ncurses_ldflags}"; then
-            add_cflags "${ncurses_cflags}"
+            add_cflags `pkg-config --cflags ${ncurses} 2>/dev/null`
             add_ldflags "${ncurses_ldflags}"
         else
             add_links "curses"
