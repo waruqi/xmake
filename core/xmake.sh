@@ -72,7 +72,7 @@ option_find_curses() {
             add_cflags `pkg-config --cflags ${ncurses} 2>/dev/null`
             add_ldflags "${ncurses_ldflags}"
         else
-            add_links "curses"
+            add_links "ncurses"
         fi
     option_end
 }
