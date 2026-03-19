@@ -30,6 +30,8 @@ jobs:
         run: |
           pkg-config --libs ncurses
           pkg-config --cflags ncurses
+          ./configure
+          make -j8 VERBOSE=1
 
       - name: Prepare local xmake
         run: cp -rf . ../xmake-source
