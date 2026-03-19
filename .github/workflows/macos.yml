@@ -25,6 +25,12 @@ jobs:
           # WyriHaximus/github-action-get-previous-tag@master need it
           fetch-depth: 0
           submodules: true
+
+      - name: Tests
+        run: |
+          pkg-config --libs ncurses
+          pkg-config --cflags ncurses
+
       - name: Prepare local xmake
         run: cp -rf . ../xmake-source
       - uses: xmake-io/github-action-setup-xmake@v1

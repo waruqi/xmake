@@ -25,8 +25,8 @@
 xmake_sh_projectdir=$(X= cd -- "$(dirname -- "$0")" && pwd -P)
 xmake_sh_builddir="build"
 xmake_sh_version="1.0.5"
-xmake_sh_verbose=false
-xmake_sh_diagnosis=false
+xmake_sh_verbose=true
+xmake_sh_diagnosis=true
 xmake_sh_copyright="Copyright (C) 2022-present Ruki Wang, https://xmake.io."
 xmake_sh_makefile="${xmake_sh_projectdir}/Makefile"
 xmake_sh_ninjafile="${xmake_sh_projectdir}/build.ninja"
